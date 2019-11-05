@@ -32,7 +32,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()").allowFormAuthenticationForClients();
+		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+//		.allowFormAuthenticationForClients()
 	}
 
 	@Override
@@ -46,16 +47,17 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	}	
 
 	@Override
-	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+	public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-		tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancerChain, accessTokenConverter()));
+		tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
 		
 		endpoints
 			.authenticationManager(authenticationManager)
 			.tokenStore(tokenStore())
-//			.tokenEnhancer(tokenEnhancerChain);
-			.accessTokenConverter(accessTokenConverter());
+			.tokenEnhancer(tokenEnhancerChain);
+//			.accessTokenConverter(accessTokenConverter());
 	}
+	
 	
 	@Bean
 	public TokenStore tokenStore() {
@@ -77,11 +79,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 		defaultTokenServices.setSupportRefreshToken(true);
 		return defaultTokenServices;
 	}
-//	
-//	@Bean
-//	public TokenEnhancer tokenEnhancer() {
-//		return new CustomTokenEnhancer();
-//	}
+	
+	@Bean
+	public TokenEnhancer tokenEnhancer() {
+		return new CustomTokenEnhancer();
+	}
 	
 }
 

@@ -37,7 +37,7 @@ public class TokenController {
 	@GetMapping("/tokens")
 	@ResponseBody
 	public List<String> getTokens() {
-		Collection<OAuth2AccessToken> tokens = tokenStore.findTokensByClientId("sampleClientId");
+		Collection<OAuth2AccessToken> tokens = tokenStore.findTokensByClientId("client");
 		return Optional.ofNullable(tokens).orElse(Collections.emptyList()).stream().map(OAuth2AccessToken::getValue)
 				.collect(Collectors.toList());
 	}
