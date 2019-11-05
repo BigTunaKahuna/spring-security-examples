@@ -32,9 +32,13 @@
 
   Keep that code, because you need to make a request using postman, curl or whatever you like to use. I used **Talend Api Tester**, a chrome extension for better visibility.
 
+  ***
+
   The url needed for the access token is **<http://localhost:8081/oauth/token>** the rest of the information shall be configured the same as in the following photo, the only exception is the **code** parameter. You have to replace it with your own code from the previous step. If all works well you shall receive a **200 response**. One important aspect that I barely found is to use the header **Authorization: Basic Y2xpZW50OnNlY3JldA==**, where the encrypted text after Basic is simply **client:secret** that is encoded in a **Base64**.
 
   ![Imgur](https://i.imgur.com/F780Epk.png)
+
+  ***
 
 Now we can simply use the access token from the previous request to access resource server specific paths. One important aspect before making the request is to change/add the header
 **Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ1c2VybmFtZSIsInNjb3BlIjpbInJlYWQiXSwib3JnYW5pemF0aW9uIjoidXNlcm5hbWUiLCJleHAiOjE1NzMwMDc4OTAsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiIxMmVhNmI4NC0yMzMwLTRmZjAtOTBhZS1kMDFjMDBjMzU4YTMiLCJjbGllbnRfaWQiOiJjbGllbnQifQ.DXOZniBvyete9co89xdg5_ATz1qc3JmcBZS9x0ee_Hw**
