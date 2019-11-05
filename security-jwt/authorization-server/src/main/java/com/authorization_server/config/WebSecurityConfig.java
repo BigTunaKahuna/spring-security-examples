@@ -20,6 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.authorizeRequests()
 			.antMatchers("/login").permitAll()
 			.antMatchers("/oauth/token/revokeById/**").permitAll()
+			.antMatchers("/oauth/**").permitAll()
 			.antMatchers("/tokens/**").permitAll()
 			.anyRequest().authenticated()
 			.and()

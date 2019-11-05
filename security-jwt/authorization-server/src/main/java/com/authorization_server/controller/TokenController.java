@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+// Example of how managing tokens would look like. The authentication server will work without those configured
 @Controller
 public class TokenController {
 

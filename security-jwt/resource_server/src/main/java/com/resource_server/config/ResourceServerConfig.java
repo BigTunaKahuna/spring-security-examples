@@ -36,6 +36,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		return new JwtTokenStore(accessTokenConverter());
 	}
 	
+	// The key needs to be the same as in the authorization_server
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();

@@ -8,8 +8,10 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 
-public class CustomTokenEnhancer implements TokenEnhancer{
+public class CustomTokenEnhancer implements TokenEnhancer {
 
+	// Using this method we can modify our JWT token and configure it accordingly to
+	// our needs
 	@Override
 	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 		Map<String, Object> additionalInfo = new HashMap<>();

@@ -33,7 +33,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
-//		.allowFormAuthenticationForClients()
 	}
 
 	@Override
@@ -46,6 +45,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 			.redirectUris("http://localhost:8082/login");
 	}	
 
+	// Instead of a TokenEnhancerChain you can use an accessTokenConverter() directly
 	@Override
 	public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
@@ -55,7 +55,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 			.authenticationManager(authenticationManager)
 			.tokenStore(tokenStore())
 			.tokenEnhancer(tokenEnhancerChain);
-//			.accessTokenConverter(accessTokenConverter());
 	}
 	
 	
@@ -64,6 +63,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 		return new JwtTokenStore(accessTokenConverter());
 	}
 	
+	// This method is using a symmetric signingKey so the resource server has to have the same key
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
